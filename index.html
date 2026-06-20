@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muxlis FC 2026 — Milliy Terma Jamoani Qo'llab-Quvvatlash Aksiyasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --uz-blue: #0099b8;
+            --uz-blue-dark: #00768f;
+            --uz-green: #1eb53a;
+            --uz-white: #ffffff;
+            --uz-gold: #f4c430;
+            --uz-dark: #0f172a;
+            --uz-red: #d52b1e;
+            --card-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--uz-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .logo {
+            color: var(--uz-white);
+            font-weight: 900;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .logo span {
+            color: var(--uz-gold);
+            position: relative;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--uz-gold);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--uz-white);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 95vh;
+            /* В CSS фоне тоже можно оставить локальную картинку, если захотите заменить фон, 
+               но пока оставил стандартный градиент для надежности, чтобы секция не ломалась */
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(0, 75, 90, 0.85));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--uz-white);
+            padding: 140px 8% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #f8fafc, transparent);
+            z-index: 1;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+            text-align: left;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--uz-gold), #fff066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: 40px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-mockup {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-mockup img {
+            max-width: 420px;
+            width: 100%;
+            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            background: linear-gradient(135deg, var(--uz-gold), #e0b018);
+            color: var(--uz-dark);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(244, 196, 48, 0.35);
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(244, 196, 48, 0.5);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto 60px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* --- PRIZES CARDS --- */
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .prize-card {
+            background: var(--uz-white);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prize-image-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .prize-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .prize-card:hover .prize-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .prize-content {
+            padding: 35px 30px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .prize-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--uz-blue);
+            z-index: 3;
+        }
+
+        .prize-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.1);
+        }
+
+        .prize-card.main-prize {
+            background: linear-gradient(180deg, #ffffff, #fffdf2);
+            transform: scale(1.03);
+            border: 1px solid rgba(244, 196, 48, 0.3);
+            position: relative;
+        }
+
+        .prize-card.main-prize::after {
+            background: linear-gradient(90deg, var(--uz-gold), #ffea79);
+        }
+
+        .prize-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: var(--uz-white);
+            padding: 6px 20px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+            z-index: 4;
+        }
+
+        .prize-card h3 {
+            color: var(--uz-dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .prize-card p {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* --- STEPS SECTION --- */
+        .steps-section {
+            background: #f1f5f9;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .step-card {
+            background: var(--uz-white);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--uz-blue), var(--uz-blue-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.6rem;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 20px rgba(0, 153, 184, 0.3);
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--uz-dark);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* --- FAQ SECTION ACCORDION --- */
+        .faq-section {
+            background: var(--uz-white);
+        }
+
+        .faq-container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .faq-item summary {
+            padding: 24px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--uz-dark);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '＋';
+            font-size: 1.2rem;
+            color: var(--uz-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item[open] summary::after {
+            content: '－';
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #090d16;
+            color: #64748b;
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 0.95rem;
+            border-top: 5px solid var(--uz-green);
+        }
+
+        .footer-links {
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: var(--uz-gold);
+        }
+
+        footer p {
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 991px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 130px;
+            }
+            .hero-content {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .hero-mockup {
+                justify-content: center;
+            }
+            .prize-card.main-prize {
+                transform: none;
+            }
+            .prize-card.main-prize:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+                justify-content: center;
+            }
+            nav {
+                display: none;
+            }
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            Muxlis <span>FC 2026</span>
+        </div>
+        <nav>
+            <a href="#home">Asosiy</a>
+            <a href="#prizes">Sovg'alar</a>
+            <a href="#how-to-participate">Shartlar</a>
+            <a href="#faq">Savollar</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Katta Futbol Mavsumi: <br><span>Muxlislar Uchun Konkurs!</span></h1>
+            <p>Bizning mobil platformamizga qo'shiling, milliy terma jamoamizni qo'llab-quvvatlang va Jahon Chempionati 2026 finaliga rasmiy chiptalar hamda eksklyuziv suvenirlar aksiyasida ishtirok eting!</p>
+            <a href="https://www.google.com" target="_blank" class="btn">Ilovani yuklab olish va qatnashish</a>
+        </div>
+        <div class="hero-mockup">
+            <img src="app-mockup.jpg" alt="Muxlis FC App Mockup">
+        </div>
+    </section>
+
+    <section class="prizes-section" id="prizes">
+        <h2 class="section-title">Aksiya Sovg'alari og Kafolatlangan Bonuslar</h2>
+        <p class="section-subtitle">Har bir faol muxlis uchun maxsus taqdirlash dasturi va qimmatbaho esdalik sovg'alari</p>
+        
+        <div class="prizes-grid">
+            <div class="prize-card">
+                <div class="prize-image-wrapper">
+                    <img src="guaranteed-bonus.jpg" alt="Sport Match Streaming">
+                </div>
+                <div class="prize-content">
+                    <h3>Kafolatlangan Bonus</h3>
+                    <p>Ilovani o'rnatgan va ro'yxatdan o'tgan <strong>har bir yangi foydalanuvchiga</strong> yetakchi sport kanaliga 1 oylik bepul obuna (promokod) taqdim etiladi.</p>
+                </div>
+            </div>
+
+            <div class="prize-card main-prize">
+                <div class="prize-badge">Bosh Sovrin</div>
+                <div class="prize-image-wrapper">
+                    <img src="world-cup-stadium.jpg" alt="World Cup Final Stadium">
+                </div>
+                <div class="prize-content">
+                    <h3>Jahon Chempionati Finali</h3>
+                    <p>Aksiyaning mutloq g'olibi uchun eng asosiy mukofot — <strong>Futbol bo'yicha Jahon Chempionati 2026 final bosqichiga 2 ta rasmiy chipta!</strong></p>
+                </div>
+            </div>
+
+            <div class="prize-card">
+                <div class="prize-image-wrapper">
+                    <img src="signed-jersey.jpg" alt="Signed Football Jersey">
+                </div>
+                <div class="prize-content">
+                    <h3>Eksklyuziv Atributika</h3>
+                    <p>O'zbekiston milliy terma jamoasining barcha yetakchi futbolchilari tomonidan <strong>shaxsan imzolangan rasmiy formalar (futbolkalar)</strong> o'yini.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps-section" id="how-to-participate">
+        <h2 class="section-title">Qanday Ishtirok Etish Mumkin?</h2>
+        <p class="section-subtitle">Aksiyada qatnashish mutlaqo shaffof va oddiy qoidalarga asoslangan</p>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Yuklab oling</h3>
+                <p>Muxlis FC rasmiy mobil ilovasini smartfoningizga yuklab oling.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Ro'yxatdan o'ting</h3>
+                <p>Profil oching va 1 oylik sport kanaliga kafolatlangan obunani faollashtiring.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Faol bo'ling</h3>
+                <p>Ilova ichidagi futbol viktorinalarida qatnashib, chiptalar va futbolkalar o'yinida ishtirok eting.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://www.google.com" target="_blank" class="btn">Ishtirokchini ro'yxatdan o'tkazish</a>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <h2 class="section-title">Tez-tez beriladigan savollar</h2>
+        <p class="section-subtitle">Aksiya va dastur haqida qo'shimcha ma'lumotlar</p>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Sport kanaliga obunani qanday olsam bo'ladi?</summary>
+                <div class="faq-answer">Ilovani muvaffaqiyatli o'rнатib, telefon raqami orqali ro'yxatdan o'tganingizdan so'ng, shaxsiy kabinetingizga avtomatik ravishda 1 oylik promokod yuboriladi.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Imzolangan futbolkalar o'yini qachon bo'lib o'tadi?</summary>
+                <div class="faq-answer">Terma jamoa atributikalari va imzolangan formalar o'yini har hafta ilova ichidagi interaktiv viktorina g'oliblari o'rtasida o'tkazib boriladi.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Asosiy chiptalar g'olibi qanday aniqlanadi?</summary>
+                <div class="faq-answer">Jahon Chempionati finaliga 2 ta chipta sohibi ilovaning eng yuqori reytingiga ega bo'lgan tahlilchilar orasidan maxsus komissiya va shaffof randomizator yordamida aniqlanadi.</div>
+            </details>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Aksiya Nizomi</a> | 
+            <a href="#">Contact Us</a>
+        </div>
+        <p>&copy; 2026 Muxlis FC Fan-klubi Portali. Barcha huquqlar himoyalangan.</p>
+        <p style="font-size: 0.8rem; margin-top: 15px; color: #334155;">Ushbu resurs norasmiy fan-portal doirasidagi rag'batlantiruvchi aksiya hisoblanadi. Tashkilotchi uchinchi tomon brendlarining intellektual mulkiga da'vo qilmaydi. Obuna va sovg'alar zaxirasi cheklangan.</p>
+    </footer>
+
+</body>
+</html>
