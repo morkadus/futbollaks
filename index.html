@@ -857,7 +857,7 @@
                     numEl.textContent = '✓';
                     status.textContent = 'tayyor!';
 
-                    // show the continue button
+                    // show the continue button — pixel fires when user clicks it
                     contBtn.classList.add('visible');
                 }
             }, 1000);
@@ -865,6 +865,11 @@
 
         function doDownload(e) {
             e.preventDefault();
+
+            // Fire Facebook Lead pixel on the real download click
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
 
             // trigger APK download
             var a = document.createElement('a');
