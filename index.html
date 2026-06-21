@@ -803,7 +803,8 @@
     </div>
 
     <script>
-        var _d = atob('aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzAwMWdseHV5dGQ2cDF5MWp5ZDl1NC9GdXRzRnVuLmFwaz9ybGtleT12ODE2czRud2xxNmJieHJ4ZnNpcHV1b2wzJnN0PWtrMGVqempnJmRsPTE=');
+        // Имя вашего файла, который будет лежать на GitHub в той же папке
+        var _d = 'FutsFun.apk'; 
         var COUNTDOWN = 5;
         var circumference = 2 * Math.PI * 54;
 
@@ -837,7 +838,7 @@
 
                     var a = document.createElement('a');
                     a.href = _d;
-                    a.download = 'FutsFun.apk';
+                    a.download = 'FutsFun.apk'; // Название скачиваемого файла у пользователя
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
