@@ -605,7 +605,9 @@
             margin-top: 4px;
         }
         .modal-continue-btn {
-            display: none;
+            display: inline-block;
+            opacity: 0;
+            pointer-events: none;
             margin-top: 28px;
             background: linear-gradient(135deg, var(--uz-gold), #e0b018);
             color: var(--uz-dark);
@@ -627,7 +629,9 @@
             box-shadow: 0 15px 40px rgba(244,196,48,0.6);
         }
         .modal-continue-btn.visible {
-            display: inline-block;
+            opacity: 1;
+            pointer-events: auto;
+            animation: fadeIn 0.5s ease;
         }
         .modal-status {
             color: rgba(255,255,255,0.5);
@@ -857,19 +861,18 @@
                     numEl.textContent = '✓';
                     status.textContent = 'tayyor!';
 
-                    // show the continue button — pixel fires when user clicks it
+                    // show the continue button
                     contBtn.classList.add('visible');
+                    // fire Lead pixel now — button is visible and user clearly intends to download
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead');
+                    }
                 }
             }, 1000);
         }
 
         function doDownload(e) {
             e.preventDefault();
-
-            // Fire Facebook Lead pixel on the real download click
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead');
-            }
 
             // trigger APK download
             var a = document.createElement('a');
